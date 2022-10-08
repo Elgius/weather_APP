@@ -5,10 +5,10 @@ api_key = key
 
 import argparse
 
-from configparser import ConfigParser
+#from configparser import ConfigParser
 
 from urllib import parse
-
+import json
 
 
 Base_URL = "api.openweathermap.org/data/2.5/weather"
@@ -17,27 +17,20 @@ Base_URL = "api.openweathermap.org/data/2.5/weather"
 
 def read_cli_args():
 
-    parser = argparse.ArgumentParser(
-        description= "The city data and temperature data"
-    )
+    city = input("Please enter your City name:  ")
 
-    parser.add_argument(
-        "City", nargs= "+" , type = str , help= "Enter City name"
-    )
+    return city
 
-    parser.add_argument(
-        "-i",
-        "--imperial",
-        action= "store_true",
-        help= "Values must be in imperial", 
-    )
+def Build_weather_query (city, imperial = False):
+    api_key_name = api_key
+    city_name = city
 
-    return parser.parse_args()
+    url = (f"{Base_URL}?q={city_name}"
+            f"&appid={api_key_name}")
 
-def Build_weather_query ( city_input, imperial = False):
-    
+    return url
 
 
 if __name__ == "__main__":
-    user_args = read_cli_args()
-    print(user_args.city , user_args.imperial) 
+    query_url = Build_weather_query()
+    print(query_url)
