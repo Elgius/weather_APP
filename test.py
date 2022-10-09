@@ -9,15 +9,15 @@ BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
 
 def Url(city):
 
-    #URL = f"{BASE_URL}?q={city}&appid={API_KEY}"
-    #response = requests.get(URL)
-    #weather_info = response.json
-    #data = response.content
-#
-    #with open("data.json", "wb") as f:
-    #    f.write(data)
+    URL = f"{BASE_URL}?q={city}&appid={API_KEY}"
+    response = requests.get(URL)
+    weather_info = response.json
+    data = response.content
 
-    file = open("data1.json", "r")
+    with open("data.json", "wb") as f:
+        f.write(data)
+
+    file = open("data.json", "r")
     json_data = json.load(file)
 
     print(type(json_data))
@@ -25,6 +25,9 @@ def Url(city):
     for key, value in json_data.items():
         print(f"\n key: {key}")
         print(f"Data: {value} \n")
+
+
+    file.close()
 
 
 
