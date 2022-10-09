@@ -1,3 +1,4 @@
 
 archive.py
 __pycache__/archive.cpython-310.pyc
+*.json
