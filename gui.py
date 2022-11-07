@@ -1,3 +1,4 @@
+from tkinter import *
 import string
 from archive import key
 import json
@@ -5,16 +6,25 @@ import requests
 
 
 
+root = Tk()
+root.geometry("400x400")
+root.resizable(0,0)
+
+root.title("Weather App")
+
+
 API_KEY = key
 
 BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
 
-#city_value = Name
+city_value = StringVar()
 
-def Url(Name):
+#city_value = ""
+
+def Url():
 
     
-    city = Name
+    city = city_value.get()
 
     #Builds the URL and shoots it into browser thanks to the requests module
     URL = f"{BASE_URL}?q={city}&appid={API_KEY}"
@@ -52,7 +62,28 @@ def Url(Name):
 
     print(results)
 
+    tfield.insert(INSERT,results)
+
     
 
     file.close()
 
+city_head= Label(root, text = 'Enter City Name', font = 'Arial 12 bold').pack(pady=10) #to generate label heading
+ 
+inp_city = Entry(root,textvariable= city_value  ,width = 24, font='Arial 14 bold').pack()
+ 
+ 
+Button(root, command =Url, text = "Check Weather", font="Arial 10", bg='lightblue', fg='black', activebackground="teal", padx=5, pady=5 ).pack(pady= 20)
+ 
+#to show output
+ 
+weather_now = Label(root, text = "The Weather is:", font = 'arial 12 bold').pack(pady=10)
+ 
+tfield = Text(root, width=46, height=10)
+
+tfield.pack()
+
+root.mainloop()
+
+#textvariable = city_value
+#this Works at last

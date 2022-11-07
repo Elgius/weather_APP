@@ -3,4 +3,6 @@ archive.py
 __pycache__/archive.cpython-310.pyc
 *.json
 *.pyc
-gui.py
+
+test/tes1.py
+test/test2.py
